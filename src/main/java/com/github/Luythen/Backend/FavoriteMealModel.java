@@ -15,16 +15,43 @@ public class FavoriteMealModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID favoriteMealID;
+    private String favoriteMealID;
     
     @Column(nullable = false)
-    private UUID userID;
+    private String userID;
 
     @Column(nullable = false)
-    private int MealID;
+    private String mealID;
 
     @Column(nullable = false)
     private String mealCategory;
 
+    public String getFavoriteMealID() {
+        return favoriteMealID;
+    }
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
+    public String getMealID() {
+        return mealID;
+    }
+
+    public void setMealID(String mealID) {
+        this.mealID = mealID;
+    }
+
+    public String getMealCategory() {
+        return mealCategory;
+    }
+
+    public void setMealCategory(String mealCategory) {
+        this.mealCategory = mealCategory;
+    }
 
 }
