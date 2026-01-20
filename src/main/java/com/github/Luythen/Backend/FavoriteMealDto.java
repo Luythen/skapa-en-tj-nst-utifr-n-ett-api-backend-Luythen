@@ -1,34 +1,10 @@
 package com.github.Luythen.Backend;
 
-import java.util.UUID;
+public class FavoriteMealDto {
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
-@Entity
-@Table(name = "FavoriteMeal")
-public class FavoriteMealModel {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private String favoriteMealID;
-    
-    @Column(nullable = false)
     private String userID;
-
-    @Column(nullable = false)
     private String mealID;
-
-    @Column(nullable = false)
     private String mealCategory;
-
-    public String getFavoriteMealID() {
-        return favoriteMealID;
-    }
 
     public String getUserID() {
         return userID;
