@@ -2,9 +2,11 @@ package com.github.Luythen.Backend;
 
 public class FavoriteMealDto {
 
+    private String favoriteMealID;
     private String userID;
     private String mealID;
     private String mealCategory;
+    private String comment;
 
     public String getUserID() {
         return userID;
@@ -29,5 +31,23 @@ public class FavoriteMealDto {
     public void setMealCategory(String mealCategory) {
         this.mealCategory = mealCategory;
     }
+
+    public String getFavoriteMealID() {
+        return favoriteMealID;
+    }
+
+    public void setFavoriteMealID(String favoriteMealID) {
+        this.favoriteMealID = favoriteMealID;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    
 
 }
