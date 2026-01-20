@@ -1,7 +1,5 @@
 package com.github.Luythen.Backend;
 
-import java.util.UUID;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,6 +23,9 @@ public class FavoriteMealModel {
 
     @Column(nullable = false)
     private String mealCategory;
+
+    @Column(nullable = false)
+    private String comment;
 
     public String getFavoriteMealID() {
         return favoriteMealID;
@@ -52,6 +53,14 @@ public class FavoriteMealModel {
 
     public void setMealCategory(String mealCategory) {
         this.mealCategory = mealCategory;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
 }
