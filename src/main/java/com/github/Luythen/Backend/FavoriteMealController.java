@@ -23,6 +23,7 @@ public class FavoriteMealController {
         try {
             FavoriteMealModel fModel = new FavoriteMealModel();
             fModel.setMealID(entity.getMealID());
+            fModel.setComment(entity.getComment());
             fModel.setMealCategory(entity.getMealCategory());
             fModel.setUserID(entity.getUserID());
             favoriteMealRepository.save(fModel);
