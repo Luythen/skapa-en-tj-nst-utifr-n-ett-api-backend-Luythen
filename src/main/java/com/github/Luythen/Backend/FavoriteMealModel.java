@@ -1,5 +1,7 @@
 package com.github.Luythen.Backend;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,6 +28,9 @@ public class FavoriteMealModel {
 
     @Column(nullable = false)
     private String comment;
+
+    @Column(nullable = false)
+    private LocalDate date;
 
     public String getFavoriteMealID() {
         return favoriteMealID;
@@ -63,4 +68,11 @@ public class FavoriteMealModel {
         this.comment = comment;
     }
 
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
 }

@@ -48,6 +48,4 @@ public class FavoriteMealDto {
         this.comment = comment;
     }
 
-    
-
 }
