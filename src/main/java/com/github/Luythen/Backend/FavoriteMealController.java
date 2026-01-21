@@ -1,5 +1,7 @@
 package com.github.Luythen.Backend;
 
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -26,6 +28,7 @@ public class FavoriteMealController {
             fModel.setComment(entity.getComment());
             fModel.setMealCategory(entity.getMealCategory());
             fModel.setUserID(entity.getUserID());
+            fModel.setDate(LocalDate.now());
             favoriteMealRepository.save(fModel);
         } catch (Exception e) {
             return ResponseEntity.badRequest().toString();
