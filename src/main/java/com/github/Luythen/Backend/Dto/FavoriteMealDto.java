@@ -1,4 +1,4 @@
-package com.github.Luythen.Backend;
+package com.github.Luythen.Backend.Dto;
 
 public class FavoriteMealDto {
 
