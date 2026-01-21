@@ -6,6 +6,6 @@ import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;
 
 public interface FavoriteMealRepository extends CrudRepository<FavoriteMealModel, String> {
-    ArrayList<FavoriteMealModel> findAll();
+    ArrayList<FavoriteMealModel> findAllByUserID(String userID);
     Optional<FavoriteMealModel> findByFavoriteMealID(String favoriteMealID);
 }
