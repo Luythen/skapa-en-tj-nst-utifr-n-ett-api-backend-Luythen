@@ -2,6 +2,7 @@ package com.github.Luythen.Backend;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,10 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.Luythen.Backend.Dto.FavoriteMealDto;
 import com.github.Luythen.Backend.Dto.FavoriteMealsDto;
+import com.github.Luythen.Backend.Dto.ResponseDto;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 @CrossOrigin("http://localhost:3030")
 @RestController
@@ -61,6 +65,23 @@ public class FavoriteMealController {
         }
     }
     
-    
+    @PutMapping("/favorite")
+    public ResponseEntity<?> editFavoriteMeal(@RequestBody FavoriteMealDto entity) {
+        ResponseDto responseDto = new ResponseDto();
+        try {
+            Optional<FavoriteMealModel> fModel = favoriteMealRepository.findByFavoriteMealID(entity.getFavoriteMealID());
+            if (!fModel.isEmpty()) {
+                fModel.get().setComment(entity.getComment());
+                favoriteMealRepository.save(fModel.get());
+            }
+        } catch (Exception e) {
+            responseDto.setStatusCode("404");
+            responseDto.setMessage("Bad request");
+            return new ResponseEntity<ResponseDto>(responseDto, HttpStatus.BAD_REQUEST);
+        }
+        responseDto.setStatusCode("200");
+        responseDto.setMessage("Update favorite meal comment");
+        return new ResponseEntity<ResponseDto>(responseDto, HttpStatus.OK);
+    }
 
 }
