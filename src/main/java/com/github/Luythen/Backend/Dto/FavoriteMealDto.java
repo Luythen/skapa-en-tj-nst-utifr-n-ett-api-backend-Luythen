@@ -4,7 +4,8 @@ public class FavoriteMealDto {
 
     private String favoriteMealID;
     private String userID;
-    private String mealID;
+    private String mealTitle;
+    private String mealImgSrc;
     private String mealCategory;
     private String comment;
 
@@ -16,12 +17,12 @@ public class FavoriteMealDto {
         this.userID = userID;
     }
 
-    public String getMealID() {
-        return mealID;
+    public String getMealTitle() {
+        return mealTitle;
     }
 
-    public void setMealID(String mealID) {
-        this.mealID = mealID;
+    public void setMealTitle(String mealTitle) {
+        this.mealTitle = mealTitle;
     }
 
     public String getMealCategory() {
@@ -46,6 +47,14 @@ public class FavoriteMealDto {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public String getMealImgSrc() {
+        return mealImgSrc;
+    }
+
+    public void setMealImgSrc(String mealSrcImg) {
+        this.mealImgSrc = mealSrcImg;
     }
 
 }

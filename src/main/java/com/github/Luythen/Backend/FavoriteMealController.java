@@ -31,9 +31,10 @@ public class FavoriteMealController {
         
         try {
             FavoriteMealModel fModel = new FavoriteMealModel();
-            fModel.setMealID(entity.getMealID());
+            fModel.setMealTitle(entity.getMealTitle());
             fModel.setComment(entity.getComment());
             fModel.setMealCategory(entity.getMealCategory());
+            fModel.setMealImgSrc(entity.getMealImgSrc());
             fModel.setUserID(entity.getUserID());
             fModel.setDate(LocalDate.now());
             favoriteMealRepository.save(fModel);

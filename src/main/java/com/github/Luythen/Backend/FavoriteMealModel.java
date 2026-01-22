@@ -21,10 +21,13 @@ public class FavoriteMealModel {
     private String userID;
 
     @Column(nullable = false)
-    private String mealID;
+    private String mealTitle;
 
     @Column(nullable = false)
     private String mealCategory;
+
+    @Column(nullable = false)
+    private String mealImgSrc;
 
     @Column(nullable = false)
     private String comment;
@@ -44,12 +47,12 @@ public class FavoriteMealModel {
         this.userID = userID;
     }
 
-    public String getMealID() {
-        return mealID;
+    public String getMealTitle() {
+        return mealTitle;
     }
 
-    public void setMealID(String mealID) {
-        this.mealID = mealID;
+    public void setMealTitle(String mealTitle) {
+        this.mealTitle = mealTitle;
     }
 
     public String getMealCategory() {
@@ -74,5 +77,13 @@ public class FavoriteMealModel {
 
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public String getMealImgSrc() {
+        return mealImgSrc;
+    }
+
+    public void setMealImgSrc(String mealImgSrc) {
+        this.mealImgSrc = mealImgSrc;
     }
 }
