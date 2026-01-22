@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.Luythen.Backend.Dto.FavoriteMealDto;
@@ -44,10 +45,10 @@ public class FavoriteMealController {
     }
 
     @GetMapping("/favorite")
-    public ResponseEntity<?> getFavoriteMeals(@RequestBody FavoriteMealDto entity) {
+    public ResponseEntity<?> getFavoriteMeals(@RequestParam("userID") String userID) {
         try {
             FavoriteMealsDto dto = new FavoriteMealsDto();
-            ArrayList<FavoriteMealModel> favoriteMealModels = favoriteMealRepository.findAllByUserID(entity.getUserID());
+            ArrayList<FavoriteMealModel> favoriteMealModels = favoriteMealRepository.findAllByUserID(userID);
             if (!favoriteMealModels.isEmpty()) {
                 dto.setFavoriteMeals(favoriteMealModels);
                 return new ResponseEntity<FavoriteMealsDto>(dto, HttpStatus.CREATED);
