@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.Luythen.Backend.Dto.FavoriteMealDto;
@@ -80,18 +81,24 @@ public class APIController {
     }
 
     @GetMapping("/favorite")
-    public ResponseEntity<?> getFavoriteMeals(@CookieValue(name = "userID", required = true) String userID) {
+    public ResponseEntity<?> getFavoriteMeals(@CookieValue(name = "userID", required = true) String userID, @RequestParam("filter") String filter) {
         ResponseDto responseDto = new ResponseDto();
         try {
             FavoriteMealsDto dto = new FavoriteMealsDto();
             ArrayList<FavoriteMealModel> favoriteMealModels = favoriteMealRepository.findAllByUserID(userID);
             if (!favoriteMealModels.isEmpty()) {
+                if (filter.contentEquals("date")) {
+                    favoriteMealModels.sort((a,b) -> new DateSortComparator().compare(a, b));
+                } 
+                if (filter.contentEquals("name")) {
+                    favoriteMealModels.sort((a,b) -> a.getMealTitle().compareTo(b.getMealTitle()));
+                }
                 dto.setFavoriteMeals(favoriteMealModels);
                 return new ResponseEntity<FavoriteMealsDto>(dto, HttpStatus.CREATED);
             }
 
             responseDto.setStatusCode("404");
-            responseDto.setMessage("Can't find any favories");
+            responseDto.setMessage("Can't find any favorites");
 
             return new ResponseEntity<ResponseDto>(responseDto, HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
