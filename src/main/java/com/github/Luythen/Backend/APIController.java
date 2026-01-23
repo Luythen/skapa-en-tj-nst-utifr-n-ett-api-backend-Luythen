@@ -31,6 +31,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 @RequestMapping("/api")
 public class APIController {
 
+    // ResponseEnitiy source: https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/http/ResponseEntity.html
+
     @Autowired
     private FavoriteMealRepository favoriteMealRepository;
 
