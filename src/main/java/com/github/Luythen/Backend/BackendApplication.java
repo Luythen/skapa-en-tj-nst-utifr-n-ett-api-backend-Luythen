@@ -13,6 +13,7 @@ public class BackendApplication {
 		SpringApplication.run(BackendApplication.class, args);
 	}
 
+	//source: https://spring.io/guides/gs/rest-service-cors
 	@Bean
 	public WebMvcConfigurer corsConfigurer () {
 		return new WebMvcConfigurer() {
