@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -119,4 +120,25 @@ public class APIController {
         return new ResponseEntity<ResponseDto>(responseDto, HttpStatus.OK);
     }
 
+    @DeleteMapping("/favorite")
+    public ResponseEntity<?> removeFavoriteMeal (@CookieValue("userID") String userID, @RequestBody FavoriteMealDto entity) {
+        ResponseDto responseDto = new ResponseDto();
+        try {
+            Optional<FavoriteMealModel> favoriteMealModel = favoriteMealRepository.findByFavoriteMealID(entity.getFavoriteMealID());
+            if (!favoriteMealModel.isEmpty()) {
+                favoriteMealRepository.delete(favoriteMealModel.get());
+                responseDto.setStatusCode("201");
+                responseDto.setMessage("Meal have successfully unfavorited");
+                return new ResponseEntity<ResponseDto>(responseDto, HttpStatus.BAD_REQUEST);
+            }
+        } catch (Exception e) {
+            responseDto.setStatusCode("404");
+            responseDto.setMessage("Internal server error");
+            return new ResponseEntity<ResponseDto>(responseDto, HttpStatus.BAD_REQUEST);
+        }
+        responseDto.setStatusCode("404");
+        responseDto.setMessage("Couldn't find anything");
+        return new ResponseEntity<ResponseDto>(responseDto, HttpStatus.BAD_REQUEST);
+    }
+    
 }
