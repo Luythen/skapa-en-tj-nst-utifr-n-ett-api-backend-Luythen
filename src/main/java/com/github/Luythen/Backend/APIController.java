@@ -62,8 +62,8 @@ public class APIController {
     
 
     @PostMapping("/favorite")
-    public String postFavoriteMeal(@CookieValue("userID") String userID, @RequestBody FavoriteMealDto entity) {
-        
+    public ResponseEntity<?> postFavoriteMeal(@CookieValue("userID") String userID, @RequestBody FavoriteMealDto entity) {
+        ResponseDto responseDto = new ResponseDto();
         try {
             FavoriteMealModel fModel = new FavoriteMealModel();
             fModel.setMealTitle(entity.getMealTitle());
@@ -74,11 +74,15 @@ public class APIController {
             fModel.setDate(LocalDate.now());
             favoriteMealRepository.save(fModel);
         } catch (Exception e) {
-            return ResponseEntity.badRequest().toString();
+            responseDto.setStatusCode("404");
+            responseDto.setMessage("Can't find any favories");
+            return new ResponseEntity<ResponseDto>(responseDto, HttpStatus.BAD_REQUEST);
         }
-        
-        return ResponseEntity.ok().toString();
-    }
+
+        responseDto.setStatusCode("201");
+        responseDto.setMessage("Save new favoirte meal");
+        return new ResponseEntity<ResponseDto>(responseDto, HttpStatus.CREATED);
+    }   
 
     @GetMapping("/favorite")
     public ResponseEntity<?> getFavoriteMeals(@CookieValue(name = "userID", required = true) String userID, @RequestParam("filter") String filter) {
