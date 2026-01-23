@@ -19,7 +19,7 @@ public class BackendApplication {
 			@Override
 			public void addCorsMappings (CorsRegistry corsRegistry) {
 				corsRegistry.addMapping("/api/initUser").allowCredentials(true).allowedOrigins("http://localhost:3030");
-				corsRegistry.addMapping("/api/favorite").allowCredentials(true).allowedOrigins("http://localhost:3030");
+				corsRegistry.addMapping("/api/favorite").allowCredentials(true).allowedOrigins("http://localhost:3030").allowedMethods("DELETE", "GET", "POST", "PUT");
 			}
 		};
 	}
