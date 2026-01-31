@@ -2,7 +2,7 @@
 ## Krav
 - Java 17
 - Maven
-- [Frontend](https://github.com/plugga-tech/skapa-en-tj-nst-utifr-n-ett-api-frontend-Luythen)
+- [Frontend](https://github.com/Luythen/skapa-en-tj-nst-utifr-n-ett-api-frontend-Luythen)
 - Mysql database
 
 ## url-slutpunkter
